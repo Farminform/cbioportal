@@ -1,16 +1,20 @@
 # Run cBioPortal using Docker Compose
+
+NOTE: run commands from WSL
+
 Download necessary files (seed data, example config and example study from
 datahub):
 ```
+wsl
 ./init.sh
 ```
 
 Start docker containers. This can take a few minutes the first time because the
 database needs to import some data.
 ```
-docker compose up
+docker compose up -d
 ```
-The cbioportal application should now be running at [localhost:8080](localhost:8080), with the one of the studies already loaded in it.
+The cbioportal application should now be running at [localhost:8888](localhost:8888), with the one of the studies already loaded in it.
 
 If you are developing and want to expose the MySQL database for inspection through a program like Sequel Pro, run:
 ```
@@ -54,7 +58,7 @@ Followed by:
 ```
 docker compose up
 ```
-When loading hg38 data make sure to set `reference_genome: hg38` in [meta_study.txt](https://docs.cbioportal.org/5.1-data-loading/data-loading/file-formats#meta-file-4). The example study in `study/` is `hg19` based. 
+When loading hg38 data make sure to set `reference_genome: hg38` in [meta_study.txt](https://docs.cbioportal.org/5.1-data-loading/data-loading/file-formats#meta-file-4). The example study in `study/` is `hg19` based.
 
 ## Example Commands
 ### Connect to the database

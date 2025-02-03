@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   cbioportal:
     restart: unless-stopped
@@ -9,7 +7,7 @@ services:
       SHOW_DEBUG_INFO: "true"
       PORTAL_HOME: "/cbioportal-webapp"
     ports:
-      - "8080:8080"
+      - "${DOCKER_CBIOPORTAL_PORT}:8080"
     volumes:
      - ./study:/study/
      - ${APPLICATION_PROPERTIES_PATH:-./config/application.properties}:/cbioportal-webapp/application.properties:ro
@@ -60,8 +58,8 @@ services:
       - cbio-net
 
 networks:
-  cbio-net: 
-  
+  cbio-net:
+
 volumes:
   cbioportal_mysql_data:
   cbioportal_mongo_data:
