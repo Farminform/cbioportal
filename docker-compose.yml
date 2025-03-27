@@ -9,8 +9,8 @@ services:
     ports:
       - "${DOCKER_CBIOPORTAL_PORT}:8080"
     volumes:
-     - ./study:/study/
-     - ${APPLICATION_PROPERTIES_PATH:-./config/application.properties}:/cbioportal-webapp/application.properties:ro
+      - /study:/study/
+      - /mnt/d/cbioportal/config/application.properties:/cbioportal-webapp/application.properties:ro
     depends_on:
      - cbioportal-database
      - cbioportal-session
@@ -29,8 +29,8 @@ services:
       MYSQL_PASSWORD: somepassword
       MYSQL_ROOT_PASSWORD: somepassword
     volumes:
-     - ./data/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql:ro
-     - ./data/seed.sql.gz:/docker-entrypoint-initdb.d/seed.sql.gz:ro
+     - /data/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql:ro
+     - /data/seed.sql.gz:/docker-entrypoint-initdb.d/seed.sql.gz:ro
      - cbioportal_mysql_data:/var/lib/mysql
     networks:
      - cbio-net
